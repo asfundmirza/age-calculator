@@ -17,11 +17,11 @@ import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import {
   differenceInYears,
-  parse,
   differenceInMonths,
   differenceInDays,
-  setYear,
 } from "date-fns";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const defaultTheme = createTheme({
   palette: {
@@ -36,7 +36,8 @@ const AgeCalculator = () => {
   const [years, setYears] = useState("");
   const [months, setMonths] = useState("");
   const [days, setDays] = useState("");
-
+  const theme = useTheme();
+  const isMobileSize = useMediaQuery(theme.breakpoints.down("sm"));
   const calculateHandler = () => {
     const currentDate = new Date();
 
@@ -65,7 +66,7 @@ const AgeCalculator = () => {
           display: "flex",
           flexDirection: "column",
           flexWrap: "wrap",
-
+          maxWidth: "auto",
           mt: 9,
         }}
       >
@@ -85,7 +86,7 @@ const AgeCalculator = () => {
                   flexDirection: "row",
                   justifyContent: "space-around",
                   flexWrap: "wrap",
-                  width: "500px",
+                  width: isMobileSize ? "400px" : "500px",
                   mb: 7,
                   ml: 2,
                 }}
@@ -98,7 +99,7 @@ const AgeCalculator = () => {
               <Box
                 sx={{
                   display: "flex",
-                  width: "500px",
+                  width: isMobileSize ? "430px" : "500px",
                   backgroundColor: "#cfd8dc",
                   flexWrap: "wrap",
                   padding: "30px",
@@ -128,7 +129,7 @@ const AgeCalculator = () => {
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "center",
+                      justifyContent: "flex-end",
                       mt: -1,
                     }}
                   >
@@ -174,7 +175,7 @@ const AgeCalculator = () => {
               <Box
                 sx={{
                   display: "flex",
-                  width: "500px",
+                  width: isMobileSize ? "430px" : "500px",
                   backgroundColor: "#cfd8dc",
                   flexWrap: "wrap",
                   padding: "33px",
